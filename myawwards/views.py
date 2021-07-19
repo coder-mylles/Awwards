@@ -1,14 +1,12 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from .forms import SignupForm, PostForm, UpdateUserForm, UpdateUserProfileForm
+from .forms import SignupForm, PostForm, UpdateUserForm, UpdateUserProfileForm, RatingsForm
 from rest_framework import viewsets
 from .models import Profile, Post
 from .serializers import ProfileSerializer, UserSerializer
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
-
-
 def index(request):
     if request.method == "POST":
         form = PostForm(request.POST)
@@ -43,13 +41,9 @@ def signup(request):
     else:
         form = SignupForm()
     return render(request, 'registration/signup.html', {'form': form})
-
 @login_required(login_url='login')
 def profile(request, username):
-
     return render(request, 'profile.html')
-
-
 @login_required(login_url='login')
 def edit_profile(request, username):
     user = User.objects.get(username=username)
@@ -69,11 +63,13 @@ def edit_profile(request, username):
     }
     return render(request, 'edit.html', params)
 
-
 def project(request, post):
     post = Post.objects.get(title=post)
-
+    [design, usability, content] = [[0], [0], [0]]
+    form = RatingsForm()
     params = {
-        'post': post
+        'post': post,
+        'rating_form': form
+
     }
     return render(request, 'project.html', params)
