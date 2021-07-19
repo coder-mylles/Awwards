@@ -5,24 +5,22 @@ from .models import Profile, Post
 from .serializers import ProfileSerializer, UserSerializer
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
-
-
 def index(request):
     if request.method == "POST":
         form = PostForm(request.POST)
         if form.is_valid():
             post = form.save(commit=False)
+            post.user = request.user.profile
             post.save()
     else:
         form = PostForm()
 
     try:
         posts = Post.objects.all()
+        print(posts)
     except Post.DoesNotExist:
         posts = None
     return render(request, 'index.html', {'posts': posts, 'form': form})
-
-
 class ProfileViewSet(viewsets.ModelViewSet):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
