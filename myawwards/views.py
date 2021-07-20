@@ -62,7 +62,6 @@ def edit_profile(request, username):
         'prof_form': prof_form
     }
     return render(request, 'edit.html', params)
-
 def project(request, post):
     post = Post.objects.get(title=post)
     if request.method == 'POST':
@@ -73,22 +72,19 @@ def project(request, post):
             rate.post = post
             rate.save()
             post_ratings = Rating.objects.filter(post=post)
-
             design_ratings = [d.design for d in post_ratings]
             design_average = sum(design_ratings)/len(design_ratings)
-
             usability_ratings = [us.usability for us in post_ratings]
             usability_average = sum(usability_ratings)/len(usability_ratings)
-
             content_ratings = [content.content for content in post_ratings]
             content_average = sum(content_ratings)/len(content_ratings)
 
             score = (design_average + usability_average + content_average)/3
             print(score)
-            rate.design_average = design_average
-            rate.usability_average = usability_average
-            rate.content_average = content_average
-            rate.score = score
+            rate.design_average = round(design_average, 2)
+            rate.usability_average = round(usability_average, 2)
+            rate.content_average = round(content_average, 2)
+            rate.score = round(score, 2)
             rate.save()
     else:
         form = RatingsForm()

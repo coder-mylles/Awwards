@@ -1,0 +1,90 @@
+.hello{
+    color:green;
+}
+#nbar{
+    background-color:#52616b;
+    color:black;
+}
+.login, #site{
+    text-decoration: none;
+    color:white;
+}
+
+.login:hover, #site:hover{
+    text-decoration: none;
+    color:white;
+}
+.brand{
+    font-weight: bolder;
+}
+.account-img {
+    height: 165px;
+    width: 165px;
+}
+.nav-img{
+    height: 30px;
+    width: 30px;
+}
+body{
+    background-color:#d4d7dd;
+}
+#heart{
+    float:right;
+    border: 1px solid black;
+    border-radius: 50%;
+    padding: 6px;
+}
+
+#heart:hover{
+    color:blue;
+    border: 1px solid blue;
+}
+#usern{
+    color: #00bdaa;
+}
+
+.form-text, .asteriskField{
+    display:none;
+}
+
+.alert{
+    margin:0;
+    padding:0;
+}
+.alert ul li {
+    list-style-type: none;
+    padding:0;
+    margin:0;
+    font-size:12px;
+}
+.overlay{
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+#design{
+    color:white;
+    border: 3px solid orange;
+    border-radius: 50%;
+    padding: 30px;
+    margin-right:30px;
+    margin-left:70px;
+}
+#usable{
+    color:white;
+    border: 3px solid blue;
+    border-radius: 50%;
+    padding: 30px;
+    margin-right:30px;
+}
+#content{
+    color:white;
+    border: 3px solid green;
+    border-radius: 50%;
+    padding: 30px;
+    margin-right:30px;
+}
+.rates{
+    font-size:16px;
+    font-weight:bolder;
+}
