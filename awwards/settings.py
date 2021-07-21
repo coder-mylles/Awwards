@@ -31,8 +31,8 @@ INSTALLED_APPS = [
     'pyuploadcare.dj',
 ]
 UPLOADCARE = {
-    'pub_key': '2b709bca64245dd9e55e',
-    'secret': '0a60851de5f3db2dc728',
+    'pub_key': '02db2ebcd1259e39977c',
+    'secret': 'e06155d123dda05afdbc',
 }
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -71,14 +71,30 @@ WSGI_APPLICATION = 'awwards.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
-    'default': dj_database_url.config(
-        default=config('DATABASE_URL')
-    )
-}
+DEBUG = True
+# development
+if config('MODE')=="dev":
+   DATABASES = {
+       'default': {
+           'ENGINE': 'django.db.backends.postgresql_psycopg2',
+           'NAME': config('DB_NAME'),
+           'USER': config('DB_USER'),
+           'PASSWORD': config('DB_PASSWORD'),
+           'HOST': config('DB_HOST'),
+           'PORT': '',
+       }
+       
+   }
+# production
+else:
+   DATABASES = {
+       'default': dj_database_url.config(
+           default=config('DATABASE_URL')
+       )
+   }
 
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
+
+ALLOWED_HOSTS = ['198.211.99.20', 'localhost', '127.0.0.1', '.herokuapp.com']
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
