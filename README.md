@@ -10,11 +10,7 @@ This project allows users to post their projects for other users to rate accordi
 ## Screenshots 
 ###### Home page
 
-<img src="">
-
- ###### user profile
- <img src=""> 
-
+<img src="https://github.com/coder-mylles/Awwards/blob/main/static/images/Screenshot%20from%202021-07-21%2013-31-51.png">
 
 
 ## User Story  
